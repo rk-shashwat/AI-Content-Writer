@@ -256,7 +256,6 @@ async function fetchExplanation(prompt) {
     response = await fetch(BACKEND_URL, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
