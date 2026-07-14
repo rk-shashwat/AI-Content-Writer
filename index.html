@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Code Explainer</title>
+  <meta name="description" content="Understand code faster with AI-powered explanations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Decorative background blobs -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">
+        <span class="logo-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 6L2.5 12L8 18M16 6L21.5 12L16 18M13.5 4L10.5 20" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="2.5" y1="4" x2="21.5" y2="20" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#4F46E5"/>
+                <stop offset="1" stop-color="#7C3AED"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="logo-text">AI Code Explainer</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <h1 class="hero-title">AI Code Explainer</h1>
+      <p class="hero-subtitle">Paste your code and get clear explanations, bug detection, complexity analysis, and improvement suggestions powered by AI.</p>
+    </section>
+
+    <!-- ================= MAIN CARD ================= -->
+    <section class="card main-card" aria-labelledby="input-heading">
+      <h2 id="input-heading" class="visually-hidden">Code input</h2>
+
+      <div class="field-grid">
+        <div class="select-field">
+          <label for="languageSelect">Programming Language</label>
+          <select id="languageSelect">
+            <option>Auto Detect</option>
+            <option>C</option>
+            <option>C++</option>
+            <option>Java</option>
+            <option>Python</option>
+            <option>JavaScript</option>
+            <option>TypeScript</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>SQL</option>
+            <option>PHP</option>
+            <option>C#</option>
+            <option>Go</option>
+            <option>Rust</option>
+            <option>Kotlin</option>
+            <option>Swift</option>
+          </select>
+        </div>
+
+        <div class="select-field">
+          <label for="explanationType">Explanation Type</label>
+          <select id="explanationType">
+            <option>Simple Explanation</option>
+            <option>Beginner Friendly</option>
+            <option>Line-by-Line Explanation</option>
+            <option>Detailed Explanation</option>
+            <option>Bug Detection</option>
+            <option>Code Review</option>
+            <option>Optimization Suggestions</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="code-wrap">
+        <label for="codeInput" class="visually-hidden">Paste your code here</label>
+        <textarea
+          id="codeInput"
+          class="code-textarea"
+          placeholder="Paste your code here..."
+          spellcheck="false"
+          aria-describedby="codeStats"
+          rows="10"
+        ></textarea>
+        <div id="codeStats" class="code-stats" aria-live="polite">
+          <span id="charCounter">0 characters</span>
+          <span id="lineCounter">0 lines</span>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button id="explainBtn" class="btn btn-primary" type="button">
+          <span class="btn-label">Explain Code</span>
+          <span class="spinner" id="btnSpinner" aria-hidden="true"></span>
+        </button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">Clear</button>
+      </div>
+
+      <p class="hint">Tip: Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to explain</p>
+    </section>
+
+    <!-- ================= RESULT SECTION ================= -->
+    <section class="card result-card" id="resultSection" aria-labelledby="result-heading" hidden>
+      <h2 id="result-heading" class="result-title">Explanation</h2>
+      <div id="explanationOutput" class="explanation-output" aria-live="polite"></div>
+
+      <div class="result-actions">
+        <button id="copyBtn" class="btn btn-secondary" type="button">Copy Explanation</button>
+        <button id="downloadTxtBtn" class="btn btn-secondary" type="button">Download TXT</button>
+        <button id="downloadPdfBtn" class="btn btn-secondary" type="button">Download PDF</button>
+        <button id="explainAgainBtn" class="btn btn-secondary" type="button">Explain Again</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= TOAST NOTIFICATIONS ================= -->
+  <div id="toastContainer" class="toast-container" aria-live="assertive"></div>
+
+  <footer class="footer">
+    <p>Built with vanilla JS &amp; the Groq API.</p>
+  </footer>
+
+  <!-- jsPDF for client-side PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
